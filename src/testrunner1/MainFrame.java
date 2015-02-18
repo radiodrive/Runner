@@ -10,11 +10,15 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *v
@@ -108,9 +112,17 @@ public class MainFrame extends javax.swing.JFrame  {
         jLabel19 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
         jLabel20 = new javax.swing.JLabel();
-        jButton10 = new javax.swing.JButton();
+        Disable = new javax.swing.JButton();
         TestSuiteStarted = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        Enable = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ResultsTable = new javax.swing.JTable();
+        CloudResults = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -234,7 +246,7 @@ public class MainFrame extends javax.swing.JFrame  {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(StartTest)
                     .addComponent(Results))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cloud TestRunner", jPanel1);
@@ -345,7 +357,7 @@ public class MainFrame extends javax.swing.JFrame  {
                     .addComponent(OPClientMachine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(67, 67, 67)
                 .addComponent(StartOnPemiseTest)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("On-Premise TestRunner", jPanel2);
@@ -402,7 +414,7 @@ public class MainFrame extends javax.swing.JFrame  {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(NewCloud14)
                     .addComponent(NewAcc14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addContainerGap(332, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Create Cloud Account ", jPanel3);
@@ -446,15 +458,16 @@ public class MainFrame extends javax.swing.JFrame  {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(NewTestClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TESTADDDELETE, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(TESTADDDELETE, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(NewTestClass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(DeleteTest))
-                .addContainerGap(327, Short.MAX_VALUE))
+                .addContainerGap(353, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Test Admin", jPanel4);
@@ -467,7 +480,7 @@ public class MainFrame extends javax.swing.JFrame  {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Security", jPanel5);
@@ -513,7 +526,16 @@ public class MainFrame extends javax.swing.JFrame  {
 
         jLabel20.setText("Disable All Automated Runs");
 
-        jButton10.setText("Disable");
+        Disable.setText("Disable");
+        Disable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DisableActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("Enable All Automated Runs");
+
+        Enable.setText("Enable");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -521,8 +543,12 @@ public class MainFrame extends javax.swing.JFrame  {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Start72Suite, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel6Layout.createSequentialGroup()
                             .addComponent(jLabel17)
                             .addGap(18, 18, 18)
@@ -535,20 +561,20 @@ public class MainFrame extends javax.swing.JFrame  {
                             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel20))
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel22))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Start73Suite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Start72Suite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))))
+                            .addComponent(Disable, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                            .addComponent(Enable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(57, 57, 57)
                 .addComponent(TestSuiteStarted, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
@@ -560,21 +586,24 @@ public class MainFrame extends javax.swing.JFrame  {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton10))
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
-                                .addComponent(TestSuiteStarted, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel14)
-                            .addComponent(Start72Suite))
-                        .addGap(18, 18, 18)
-                        .addComponent(Start73Suite))
-                    .addComponent(jLabel15))
-                .addGap(29, 29, 29)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Disable))
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(Enable))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(TestSuiteStarted, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(Start72Suite))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(Start73Suite))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(jButton5))
@@ -590,7 +619,7 @@ public class MainFrame extends javax.swing.JFrame  {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(jButton8))
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Jenkins Suite Execution", jPanel6);
@@ -603,10 +632,77 @@ public class MainFrame extends javax.swing.JFrame  {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+            .addGap(0, 427, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Test Suite Configuration", jPanel7);
+
+        ResultsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Product", "TestName", "MethodName", "Result", "Version", "Date"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(ResultsTable);
+
+        CloudResults.setText("Cloud Professional");
+        CloudResults.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CloudResultsActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("On-Premise 7.3");
+
+        jButton4.setText("On-Premise 7.2");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CloudResults)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CloudResults)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Nightly Results", jPanel8);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -824,6 +920,34 @@ public class MainFrame extends javax.swing.JFrame  {
         }
     }//GEN-LAST:event_NewCloud14ActionPerformed
 
+    private void CloudResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloudResultsActionPerformed
+        // TODO add your handling code here:
+
+                   /* Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+                    Connection con = DriverManager.getConnection (connectionURL);
+                    java.sql.Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery("select * from product_info");*/
+                    
+                    //ResultsTable.addColumn(BuildResultsTable(rs));
+                   
+    }//GEN-LAST:event_CloudResultsActionPerformed
+
+    private void DisableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisableActionPerformed
+        // TODO add your handling code here:
+        Functions a = new Functions();
+        try {
+            a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20FF%20Servers/disable");
+            a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20IE%20Servers/disable");
+            a.PostURL("http://192.168.118.159:8081/job/7.3%20Chrome%20Servers/disable");
+            a.PostURL("http://192.168.118.159:8081/view/On-Premise%207.2%20Suites/job/Poll%20Build%20Folder%2072%20CRM%20Reboot%20VMs/disable");
+            
+            TestSuiteStarted.setText("All Suites Disabled");
+        } catch (IOException ex) {
+            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_DisableActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -862,7 +986,10 @@ public class MainFrame extends javax.swing.JFrame  {
     public javax.swing.JTextField Account;
     public javax.swing.JComboBox Browser;
     public javax.swing.JComboBox ClientMachine;
+    private javax.swing.JButton CloudResults;
     private javax.swing.JButton DeleteTest;
+    private javax.swing.JButton Disable;
+    private javax.swing.JButton Enable;
     public javax.swing.JComboBox Language;
     private javax.swing.JTextField NewAcc14;
     public javax.swing.JTextField NewAcc15;
@@ -876,6 +1003,7 @@ public class MainFrame extends javax.swing.JFrame  {
     public javax.swing.JComboBox OPTestClass;
     public javax.swing.JComboBox OPTestMethod;
     private javax.swing.JButton Results;
+    public javax.swing.JTable ResultsTable;
     public javax.swing.JComboBox SiteURL;
     private javax.swing.JButton Start72Suite;
     private javax.swing.JButton Start73Suite;
@@ -885,8 +1013,9 @@ public class MainFrame extends javax.swing.JFrame  {
     public javax.swing.JComboBox TestClass;
     public javax.swing.JComboBox TestMethod;
     private javax.swing.JLabel TestSuiteStarted;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -905,6 +1034,7 @@ public class MainFrame extends javax.swing.JFrame  {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -919,6 +1049,8 @@ public class MainFrame extends javax.swing.JFrame  {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
 
@@ -1271,7 +1403,32 @@ public class MainFrame extends javax.swing.JFrame  {
                             //con.close();
             }
     }
-    
+         
+          private DefaultTableModel BuildResultsTable(ResultSet rs) throws SQLException {
+                // Change the connection string according to your db, ip, username and password
+ 
+               ResultSetMetaData metaData = rs.getMetaData();
+
+                // names of columns
+                Vector<String> columnNames = new Vector<String>();
+                int columnCount = metaData.getColumnCount();
+                for (int column = 1; column <= columnCount; column++) {
+                    columnNames.add(metaData.getColumnName(column));
+                }
+
+                // data of the table
+                Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+                while (rs.next()) {
+                    Vector<Object> vector = new Vector<Object>();
+                    for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                        vector.add(rs.getObject(columnIndex));
+                    }
+                    data.add(vector);
+                }
+
+                return new DefaultTableModel(data, columnNames);
+                }
+
      
        
         
