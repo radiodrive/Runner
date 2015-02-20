@@ -119,7 +119,7 @@ public class RunTest {
                 p.getErrorStream().close();
                 p.destroy();
             } catch (IOException | InterruptedException ex) {
-                ex.printStackTrace(System.err);
+                JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
             }
             return status;
         }

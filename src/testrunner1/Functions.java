@@ -4,6 +4,7 @@
  */
 package testrunner1;
 
+import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -14,6 +15,8 @@ import java.math.BigInteger;
 import java.net.Authenticator;
 import java.net.HttpURLConnection;
 import java.net.PasswordAuthentication;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -22,6 +25,8 @@ import java.security.SecureRandom;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.apache.commons.io.FileUtils;
 import org.tmatesoft.svn.core.SVNDepth;
 import org.tmatesoft.svn.core.SVNException;
@@ -63,7 +68,7 @@ public class Functions {
                     FileUtils.writeStringToFile(new File(Path), AntScript);
 
 	} catch (Exception ex) {
-	System.out.println("ERROR");
+	JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
 	}
         
     }
@@ -193,7 +198,7 @@ public class Functions {
         					null, true, SVNDepth.INFINITY);
         			
         		} catch (SVNException e) {
-        			e.printStackTrace();
+        			JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         		}finally {
         			System.out.println("Done");
         		}
@@ -233,7 +238,7 @@ public class Functions {
         					null, true, SVNDepth.INFINITY);
         			
         		} catch (SVNException e) {
-        			e.printStackTrace();
+        			JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         		}finally {
         			System.out.println("Done");
         		}
@@ -267,7 +272,9 @@ public class Functions {
 			
 
         }
-        catch(IOException e1) {} 
+        catch(IOException e1) {
+        
+        JOptionPane.showMessageDialog(new JFrame(), e1 + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);} 
  
     }
     
@@ -371,7 +378,7 @@ public class Functions {
         }
     in.close();
     } catch (Exception e) {
-        throw new RuntimeException("Exception while calling URL:"+ myURL, e);
+        JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
     } 
 
     return sb.toString();
@@ -411,4 +418,22 @@ public class Functions {
         }
     
     
+    public static void openWebpage(URI uri) {
+    Desktop desktop = Desktop.isDesktopSupported() ? Desktop.getDesktop() : null;
+    if (desktop != null && desktop.isSupported(Desktop.Action.BROWSE)) {
+        try {
+            desktop.browse(uri);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }
+}
+
+public static void openWebpage(URL url) {
+    try {
+        openWebpage(url.toURI());
+    } catch (URISyntaxException e) {
+       JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
+    }
+}
 }

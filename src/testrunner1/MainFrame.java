@@ -7,15 +7,20 @@ package testrunner1;
 import org.tmatesoft.svn.core.SVNException;
 import java.util.UUID;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -72,6 +77,7 @@ public class MainFrame extends javax.swing.JFrame  {
         jLabel12 = new javax.swing.JLabel();
         ClientMachine = new javax.swing.JComboBox();
         Results = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         OPBrowser = new javax.swing.JComboBox();
@@ -168,6 +174,13 @@ public class MainFrame extends javax.swing.JFrame  {
             }
         });
 
+        jButton1.setText("Connect To VM");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -192,15 +205,18 @@ public class MainFrame extends javax.swing.JFrame  {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(SiteURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(Account, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addGap(18, 18, 18)
-                            .addComponent(TestMethod, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel12)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(ClientMachine, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(TestMethod, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ClientMachine, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -238,11 +254,12 @@ public class MainFrame extends javax.swing.JFrame  {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(TestMethod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(ClientMachine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(95, 95, 95)
+                    .addComponent(ClientMachine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addGap(93, 93, 93)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(StartTest)
                     .addComponent(Results))
@@ -637,32 +654,6 @@ public class MainFrame extends javax.swing.JFrame  {
 
         jTabbedPane1.addTab("Test Suite Configuration", jPanel7);
 
-        ResultsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Product", "TestName", "MethodName", "Result", "Version", "Date"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
         jScrollPane1.setViewportView(ResultsTable);
 
         CloudResults.setText("Cloud Professional");
@@ -764,9 +755,9 @@ public class MainFrame extends javax.swing.JFrame  {
             }
             } 
         } catch (SVNException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_StartTestActionPerformed
 
@@ -782,7 +773,7 @@ public class MainFrame extends javax.swing.JFrame  {
            NewAcc15.setText(EMail);
            
         } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_NewCloud15ActionPerformed
 
@@ -835,9 +826,9 @@ public class MainFrame extends javax.swing.JFrame  {
             }
                }
         } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         } catch (SVNException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         }
         
         
@@ -861,7 +852,7 @@ public class MainFrame extends javax.swing.JFrame  {
               a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20IE%20Servers/build");
               TestSuiteStarted.setText("7.3 Suites Started Succesfully");
         } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_Start73SuiteActionPerformed
@@ -894,7 +885,7 @@ public class MainFrame extends javax.swing.JFrame  {
             a.PostURL("http://192.168.118.159:8081/view/On-Premise%207.2%20Suites/job/Poll%20Build%20Folder%2072%20CRM%20Reboot%20VMs/build");
             TestSuiteStarted.setText("7.2 Suite Started Succesfully");
         } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_Start72SuiteActionPerformed
 
@@ -916,19 +907,61 @@ public class MainFrame extends javax.swing.JFrame  {
            NewAcc14.setText(Acc);
            
         } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_NewCloud14ActionPerformed
 
     private void CloudResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloudResultsActionPerformed
         // TODO add your handling code here:
-
-                   /* Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+try{                 
+    
+                    String date = new SimpleDateFormat("").format(new Date());
+                    System.out.println(date);
+                   Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                     Connection con = DriverManager.getConnection (connectionURL);
                     java.sql.Statement stmt = con.createStatement();
-                    ResultSet rs = stmt.executeQuery("select * from product_info");*/
-                    
-                    //ResultsTable.addColumn(BuildResultsTable(rs));
+                    ResultSet rs = stmt.executeQuery("SELECT Max([Product]) as Product,[TestName],[MethodName],Max([Result])as Result,Max([Version])as Version,Max([Date]) as Date FROM [TestRunner].[dbo].[Results] where Date>'"+date+" 23:00:11.353' GROUP BY [TestName],[MethodName]ORDER BY [TestName]");
+
+                    ResultSetMetaData md = rs.getMetaData();
+                    int columnCount = md.getColumnCount();
+                    Vector columns = new Vector(columnCount);
+
+                  //store column names
+                    for(int i=1; i<=columnCount; i++)
+                      columns.add(md.getColumnName(i));
+
+                  Vector data = new Vector();
+                  Vector row;
+
+                    while (rs.next()) {
+
+                      row = new Vector(columnCount);
+                         for(int i=1; i<=columnCount; i++)
+                         {
+                             row.add(rs.getString(i));
+                         }
+                         data.add(row);
+
+
+                    }
+         
+                //Display in JTable
+              DefaultTableModel tableModel = new DefaultTableModel(data, columns);   
+              
+                 ResultsTable.setModel(tableModel);
+                rs.close();
+   
+    } catch (SQLException sqle) {
+      JOptionPane.showMessageDialog(new JFrame(), sqle + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
+ 
+        sqle.printStackTrace();
+    } catch (ClassNotFoundException cnfe) {
+        JOptionPane.showMessageDialog(new JFrame(), cnfe + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
+         
+        cnfe.printStackTrace();
+    }
+               
+    
                    
     }//GEN-LAST:event_CloudResultsActionPerformed
 
@@ -943,10 +976,60 @@ public class MainFrame extends javax.swing.JFrame  {
             
             TestSuiteStarted.setText("All Suites Disabled");
         } catch (IOException ex) {
-            Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_DisableActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String ClientURL = ClientMachine.getSelectedItem().toString();
+        try {
+            URL W8FF = new URL("http://w8-1x64_en_ff1:3000/");
+            URL W8CH = new URL("http://w8-1x64_en_ch_1:3000/");
+            /*URL W8IE = new URL("");
+            URL W8FR = new URL("");
+            URL W8DE = new URL("");
+            URL W8ES = new URL("");*/
+            
+            if(ClientURL.equalsIgnoreCase("Win8.1x64 Firefox EN")){
+                Functions c = new Functions();
+            c.openWebpage(W8FF);
+            }
+            
+            if(ClientURL.equalsIgnoreCase("Win8.1x64 Chrome EN")){
+                Functions c = new Functions();
+            c.openWebpage(W8CH);
+            }
+            /*if(ClientURL.equalsIgnoreCase("Win8.1x64 IE EN")){
+                Functions c = new Functions();
+            c.openWebpage(W8IE);
+            }
+            if(ClientURL.equalsIgnoreCase("Win8.1x64 Firefox DE")){
+                Functions c = new Functions();
+            c.openWebpage(W8DE);
+            }
+             if(ClientURL.equalsIgnoreCase("Win8.1x64 Firefox FR")){
+                Functions c = new Functions();
+            c.openWebpage(W8FR);
+            }
+             if(ClientURL.equalsIgnoreCase("Win8.1x64 Firefox ES")){
+                Functions c = new Functions();
+            c.openWebpage(W8ES);
+            }*/
+            
+            
+        } catch (MalformedURLException ex) {
+           JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+      
+            
+            
+            
+            
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -965,13 +1048,13 @@ public class MainFrame extends javax.swing.JFrame  {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         }
         //</editor-fold>
 
@@ -1013,6 +1096,7 @@ public class MainFrame extends javax.swing.JFrame  {
     public javax.swing.JComboBox TestClass;
     public javax.swing.JComboBox TestMethod;
     private javax.swing.JLabel TestSuiteStarted;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1089,10 +1173,10 @@ public class MainFrame extends javax.swing.JFrame  {
                      // System.out.println("Name= " + rs.getString("ClassName"));
                 }
                 catch (SQLException e) {
-                    e.printStackTrace();
+                   JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
                 catch (Exception e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
               
                         // Close Test connection
@@ -1134,10 +1218,10 @@ public class MainFrame extends javax.swing.JFrame  {
                      // System.out.println("Name= " + rs.getString("ClassName"));
                 }
                 catch (SQLException e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
                 catch (Exception e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
               
                         // Close Test connection
@@ -1178,10 +1262,10 @@ public class MainFrame extends javax.swing.JFrame  {
                      // System.out.println("Name= " + rs.getString("ClassName"));
                 }
                 catch (SQLException e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
                 catch (Exception e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
               
                         // Close Test connection
@@ -1222,10 +1306,10 @@ public class MainFrame extends javax.swing.JFrame  {
                      // System.out.println("Name= " + rs.getString("ClassName"));
                 }
                 catch (SQLException e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
                 catch (Exception e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
               
                         // Close Test connection
@@ -1268,10 +1352,10 @@ public class MainFrame extends javax.swing.JFrame  {
                 }
                 
                 catch (SQLException e) {
-                    e.printStackTrace();
+                   JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
                 catch (Exception e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
               
                         // Close Test connection
@@ -1312,10 +1396,10 @@ public class MainFrame extends javax.swing.JFrame  {
                 }
                 
                 catch (SQLException e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
                 catch (Exception e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                 }
               
                         // Close Test connection
@@ -1354,10 +1438,10 @@ public class MainFrame extends javax.swing.JFrame  {
                              // System.out.println("Name= " + rs.getString("ClassName"));
                         }
                         catch (SQLException e) {
-                            e.printStackTrace();
+                            JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                         }
                         catch (Exception e) {
-                            e.printStackTrace();
+                            JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                         }
                         finally {
                             // Close Test connection
@@ -1393,10 +1477,10 @@ public class MainFrame extends javax.swing.JFrame  {
                              // System.out.println("Name= " + rs.getString("ClassName"));
                         }
                         catch (SQLException e) {
-                            e.printStackTrace();
+                           JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                         }
                         catch (Exception e) {
-                            e.printStackTrace();
+                            JOptionPane.showMessageDialog(new JFrame(), e + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
                         }
                         finally {
                             // Close Test connection
