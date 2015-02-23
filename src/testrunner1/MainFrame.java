@@ -42,7 +42,7 @@ public class MainFrame extends javax.swing.JFrame  {
      */
     public MainFrame() {
         initComponents();
-        PopulateDropdowns();
+        //PopulateDropdowns();
         PopulateSiteURL();
         PopulateClassName();
         PopulateClient();
@@ -61,8 +61,6 @@ public class MainFrame extends javax.swing.JFrame  {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        Browser = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         StartTest = new javax.swing.JButton();
@@ -76,7 +74,6 @@ public class MainFrame extends javax.swing.JFrame  {
         Language = new javax.swing.JComboBox();
         jLabel12 = new javax.swing.JLabel();
         ClientMachine = new javax.swing.JComboBox();
-        Results = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -122,6 +119,7 @@ public class MainFrame extends javax.swing.JFrame  {
         TestSuiteStarted = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         Enable = new javax.swing.JButton();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(2, 0), new java.awt.Dimension(2, 0), new java.awt.Dimension(2, 32767));
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -129,16 +127,16 @@ public class MainFrame extends javax.swing.JFrame  {
         CloudResults = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        Label = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        TotalTests = new javax.swing.JLabel();
+        PassTests = new javax.swing.JLabel();
+        FailTests = new javax.swing.JLabel();
+        SkippedTests = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Browser");
-
-        Browser.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BrowserActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Site URL");
 
@@ -167,13 +165,6 @@ public class MainFrame extends javax.swing.JFrame  {
 
         jLabel12.setText("Client Machine ");
 
-        Results.setText("Results");
-        Results.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ResultsActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("Connect To VM");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,29 +179,21 @@ public class MainFrame extends javax.swing.JFrame  {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(StartTest)
-                        .addGap(18, 18, 18)
-                        .addComponent(Results))
+                    .addComponent(StartTest)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7)
-                            .addComponent(jLabel1))
-                        .addGap(26, 26, 26)
+                            .addComponent(jLabel2))
+                        .addGap(38, 38, 38)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Browser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(72, 72, 72)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SiteURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(Account, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(Account, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SiteURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(18, 18, 18)
-                                .addComponent(TestMethod, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(TestMethod, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -221,21 +204,16 @@ public class MainFrame extends javax.swing.JFrame  {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
+                        .addGap(29, 29, 29)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(Language, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(TestClass, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(TestClass, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Language, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(Browser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(SiteURL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
@@ -260,9 +238,7 @@ public class MainFrame extends javax.swing.JFrame  {
                     .addComponent(ClientMachine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(93, 93, 93)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(StartTest)
-                    .addComponent(Results))
+                .addComponent(StartTest)
                 .addContainerGap(84, Short.MAX_VALUE))
         );
 
@@ -559,41 +535,46 @@ public class MainFrame extends javax.swing.JFrame  {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Start72Suite, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addComponent(jLabel17)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel18)
-                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(46, 46, 46)
-                            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel20)
-                            .addComponent(jLabel22))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Start73Suite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(Disable, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                            .addComponent(Enable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(57, 57, 57)
-                .addComponent(TestSuiteStarted, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Start72Suite, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addComponent(jLabel17)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel6Layout.createSequentialGroup()
+                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel18)
+                                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(46, 46, 46)
+                                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel15)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel22))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(Start73Suite, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(Disable, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                    .addComponent(Enable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(57, 57, 57)
+                        .addComponent(TestSuiteStarted, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(276, 276, 276)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -609,7 +590,9 @@ public class MainFrame extends javax.swing.JFrame  {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
                             .addComponent(Enable))
-                        .addGap(18, 18, 18))
+                        .addGap(7, 7, 7)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel6Layout.createSequentialGroup()
                         .addComponent(TestSuiteStarted, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)))
@@ -654,6 +637,14 @@ public class MainFrame extends javax.swing.JFrame  {
 
         jTabbedPane1.addTab("Test Suite Configuration", jPanel7);
 
+        ResultsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane1.setViewportView(ResultsTable);
 
         CloudResults.setText("Cloud Professional");
@@ -667,19 +658,50 @@ public class MainFrame extends javax.swing.JFrame  {
 
         jButton4.setText("On-Premise 7.2");
 
+        Label.setText("Total: ");
+
+        jLabel1.setText("Pass:");
+
+        jLabel23.setText("Fail:");
+
+        jLabel24.setText("Skip:");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(CloudResults)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(Label)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(TotalTests)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1))
+                    .addComponent(CloudResults))
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(PassTests)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(FailTests)
+                        .addGap(17, 17, 17)))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(SkippedTests)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel24))
+                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -689,7 +711,17 @@ public class MainFrame extends javax.swing.JFrame  {
                     .addComponent(CloudResults)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addGap(34, 34, 34)
+                .addGap(9, 9, 9)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Label)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24)
+                    .addComponent(TotalTests)
+                    .addComponent(PassTests)
+                    .addComponent(FailTests)
+                    .addComponent(SkippedTests))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE))
         );
 
@@ -717,13 +749,13 @@ public class MainFrame extends javax.swing.JFrame  {
         try {
             // TODO add your handling code here:
             String uuid = UUID.randomUUID().toString();
-            String Browser1 = Browser.getSelectedItem().toString();
+            String Browser1 = ClientMachine.getSelectedItem().toString();
             String URL = SiteURL.getSelectedItem().toString();
             String Version = "Cloud(Professional)";
             String Logon = Account.getText();
             String ClassName = TestClass.getSelectedItem().toString();
             String Lang = Language.getSelectedItem().toString();
-         
+          
             //String MethodName = TestMethod.getSelectedItem().toString();
             String ProductVer = "7.2";
            
@@ -760,10 +792,6 @@ public class MainFrame extends javax.swing.JFrame  {
             JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_StartTestActionPerformed
-
-    private void BrowserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BrowserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BrowserActionPerformed
 
     private void NewCloud15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewCloud15ActionPerformed
          try {
@@ -837,57 +865,24 @@ public class MainFrame extends javax.swing.JFrame  {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         String NewTest = NewTestClass.getText();
+            if(NewTestClass.equals("")){
+           JOptionPane.showMessageDialog(null, "Site URL Cannnot be Blank");
+            
         AddTestClass(NewTest);
         TESTADDDELETE.setText("Test Added Successfully");
-        PopulateDropdowns();
+       //PopulateDropdowns();
         NewTestClass.setText("");
+            }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void Start73SuiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Start73SuiteActionPerformed
-        // TODO add your handling code here:
-         Functions a = new Functions();
-        try {
-            a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20Chrome%20Servers/build");
-             a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20FF%20Servers/build");
-              a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20IE%20Servers/build");
-              TestSuiteStarted.setText("7.3 Suites Started Succesfully");
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_Start73SuiteActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void ResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResultsActionPerformed
-        // TODO add your handling code here:
-        
-        PieChart.DispalyResults();
-        
-        
-        
-    }//GEN-LAST:event_ResultsActionPerformed
 
     private void DeleteTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteTestActionPerformed
         // TODO add your handling code here:
-        
+        if(NewTestClass.equals("")){
         String NewTest = NewTestClass.getText();
         DeleteTestClass(NewTest);
         TESTADDDELETE.setText("Test Deleted Successfully");
-    }//GEN-LAST:event_DeleteTestActionPerformed
-
-    private void Start72SuiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Start72SuiteActionPerformed
-        // TODO add your handling code here:
-        Functions a = new Functions();
-        try {
-            a.PostURL("http://192.168.118.159:8081/view/On-Premise%207.2%20Suites/job/Poll%20Build%20Folder%2072%20CRM%20Reboot%20VMs/build");
-            TestSuiteStarted.setText("7.2 Suite Started Succesfully");
-        } catch (IOException ex) {
-            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_Start72SuiteActionPerformed
+    }//GEN-LAST:event_DeleteTestActionPerformed
 
     private void OPClientMachineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OPClientMachineActionPerformed
         // TODO add your handling code here:
@@ -916,7 +911,6 @@ public class MainFrame extends javax.swing.JFrame  {
 try{                 
     
                     String date = new SimpleDateFormat("").format(new Date());
-                    System.out.println(date);
                    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                     Connection con = DriverManager.getConnection (connectionURL);
                     java.sql.Statement stmt = con.createStatement();
@@ -964,22 +958,6 @@ try{
     
                    
     }//GEN-LAST:event_CloudResultsActionPerformed
-
-    private void DisableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisableActionPerformed
-        // TODO add your handling code here:
-        Functions a = new Functions();
-        try {
-            a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20FF%20Servers/disable");
-            a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20IE%20Servers/disable");
-            a.PostURL("http://192.168.118.159:8081/job/7.3%20Chrome%20Servers/disable");
-            a.PostURL("http://192.168.118.159:8081/view/On-Premise%207.2%20Suites/job/Poll%20Build%20Folder%2072%20CRM%20Reboot%20VMs/disable");
-            
-            TestSuiteStarted.setText("All Suites Disabled");
-        } catch (IOException ex) {
-           JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_DisableActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -1031,6 +1009,51 @@ try{
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void DisableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DisableActionPerformed
+        // TODO add your handling code here:
+        Functions a = new Functions();
+        try {
+            a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20FF%20Servers/disable");
+            a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20IE%20Servers/disable");
+            a.PostURL("http://192.168.118.159:8081/job/7.3%20Chrome%20Servers/disable");
+            a.PostURL("http://192.168.118.159:8081/view/On-Premise%207.2%20Suites/job/Poll%20Build%20Folder%2072%20CRM%20Reboot%20VMs/disable");
+
+            TestSuiteStarted.setText("All Suites Disabled");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_DisableActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void Start73SuiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Start73SuiteActionPerformed
+        // TODO add your handling code here:
+        Functions a = new Functions();
+        try {
+            a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20Chrome%20Servers/build");
+            a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20FF%20Servers/build");
+            a.PostURL("http://192.168.118.159:8081/job/Revert%207.3%20IE%20Servers/build");
+            TestSuiteStarted.setText("7.3 Suites Started Succesfully");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_Start73SuiteActionPerformed
+
+    private void Start72SuiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Start72SuiteActionPerformed
+        // TODO add your handling code here:
+        Functions a = new Functions();
+        try {
+            a.PostURL("http://192.168.118.159:8081/view/On-Premise%207.2%20Suites/job/Poll%20Build%20Folder%2072%20CRM%20Reboot%20VMs/build");
+            TestSuiteStarted.setText("7.2 Suite Started Succesfully");
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(new JFrame(), ex + "\n"+"Please contact your system administrator.","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_Start72SuiteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1067,12 +1090,13 @@ try{
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField Account;
-    public javax.swing.JComboBox Browser;
     public javax.swing.JComboBox ClientMachine;
     private javax.swing.JButton CloudResults;
     private javax.swing.JButton DeleteTest;
     private javax.swing.JButton Disable;
     private javax.swing.JButton Enable;
+    private javax.swing.JLabel FailTests;
+    public javax.swing.JLabel Label;
     public javax.swing.JComboBox Language;
     private javax.swing.JTextField NewAcc14;
     public javax.swing.JTextField NewAcc15;
@@ -1085,9 +1109,10 @@ try{
     public javax.swing.JTextField OPSiteURL;
     public javax.swing.JComboBox OPTestClass;
     public javax.swing.JComboBox OPTestMethod;
-    private javax.swing.JButton Results;
+    public javax.swing.JLabel PassTests;
     public javax.swing.JTable ResultsTable;
     public javax.swing.JComboBox SiteURL;
+    private javax.swing.JLabel SkippedTests;
     private javax.swing.JButton Start72Suite;
     private javax.swing.JButton Start73Suite;
     private javax.swing.JButton StartOnPemiseTest;
@@ -1096,6 +1121,8 @@ try{
     public javax.swing.JComboBox TestClass;
     public javax.swing.JComboBox TestMethod;
     private javax.swing.JLabel TestSuiteStarted;
+    public javax.swing.JLabel TotalTests;
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1119,6 +1146,8 @@ try{
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1141,7 +1170,7 @@ try{
    
     
     
-       public JComboBox PopulateDropdowns() {
+  /*     public JComboBox PopulateDropdowns() {
                  
              
                 // Change the connection string according to your db, ip, username and password
@@ -1184,7 +1213,7 @@ try{
                     
                     return Browser;
     }
-
+*/
        
        public JComboBox PopulateSiteURL() {
                  

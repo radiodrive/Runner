@@ -17,6 +17,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JPanel;
 
@@ -55,7 +57,7 @@ public class PieChart extends ApplicationFrame {
 // Change the connection string according to your db, ip, username and password
  DefaultPieDataset dataset = new DefaultPieDataset();
 try {
- 
+    String date = new SimpleDateFormat("").format(new Date());
     // Load the Driver class. 
     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
     // If you are using any other database then load the right driver here.
@@ -67,7 +69,7 @@ try {
     java.sql.Statement stmt = con.createStatement();
  
     //Execute the SQL statement and get the results in a Resultset
-   ResultSet rs = stmt.executeQuery("SELECT TOP 1000 [Pass],[Fail],[Skip] FROM [TestRunner].[dbo].[Results]");
+   ResultSet rs = stmt.executeQuery("SELECT Max([Product]) as Product,[TestName],[MethodName],Max([Result])as Result,Max([Version])as Version,Max([Date]) as Date FROM [TestRunner].[dbo].[Results] where Date>'"+date+" 23:00:11.353' GROUP BY [TestName],[MethodName]");
 
  
     // Iterate through the ResultSet, displaying two values

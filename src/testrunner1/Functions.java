@@ -93,6 +93,7 @@ public class Functions {
 				
 					"#Test Configuration (auatomatically read from TestRunner)"+newline+
 					"Grid2On=True"+newline+
+                                        "GridURL=http://192.168.118.148:4444/grid/console"+newline+
 					"Browser="+Browser+newline+
 					"CRM_Edition="+Version+newline+
 					

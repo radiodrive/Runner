@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><suite Name="Test"><test Name="Test"><classes><Class Name="tests.Metadata.Metadata"/><methods><include Name="TestMetadataRefresh"/><include Name="InitalBeforeMethod"/><include Name="checkResult"/><include Name="SuperTearDown"/><include Name="tearDown"/><include Name="setup"/></methods></classes></test></suite>
