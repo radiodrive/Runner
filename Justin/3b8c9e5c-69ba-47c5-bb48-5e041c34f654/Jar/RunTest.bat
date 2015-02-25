@@ -1,1 +1,0 @@
-java -jar C:\Justin\3b8c9e5c-69ba-47c5-bb48-5e041c34f654\Jar\Autostart.jar C:\Justin\3b8c9e5c-69ba-47c5-bb48-5e041c34f654\Test.xml C:\Justin\3b8c9e5c-69ba-47c5-bb48-5e041c34f654\Results Cloud(Professional)

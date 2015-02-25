@@ -1,1 +1,0 @@
-java -jar Caller.jar REGISTER CALL SVN

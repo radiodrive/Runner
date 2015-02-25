@@ -1,1 +1,0 @@
-java -jar C:\Users\justin.mulcahy\Documents\NetBeansProjects\TestRunner1\42386f45-9be7-445e-9f09-4acce40d2917\Jar\Autostart.jar C:\Users\justin.mulcahy\Documents\NetBeansProjects\TestRunner1\42386f45-9be7-445e-9f09-4acce40d2917\Test.xml C:\Users\justin.mulcahy\Documents\NetBeansProjects\TestRunner1\42386f45-9be7-445e-9f09-4acce40d2917\Results Cloud(Professional)
